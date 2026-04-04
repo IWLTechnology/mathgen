@@ -83,15 +83,10 @@
                 <div>
                     <h2>Addition:</h2>
                     <div class="w3-bar">
+                        <input class="w3-input w3-bar-item" id="0_min" value="0" placeholder="Minimum" type="number" />
                         <input
                             class="w3-input w3-bar-item"
-                            id="add_min"
-                            value="0"
-                            placeholder="Minimum"
-                            type="number" />
-                        <input
-                            class="w3-input w3-bar-item"
-                            id="add_max"
+                            id="0_max"
                             value="1000"
                             placeholder="Maximum"
                             type="number" />
@@ -106,15 +101,10 @@
                 <div>
                     <h2>Subtraction:</h2>
                     <div class="w3-bar">
+                        <input class="w3-input w3-bar-item" id="1_min" value="0" placeholder="Minimum" type="number" />
                         <input
                             class="w3-input w3-bar-item"
-                            id="sub_min"
-                            value="0"
-                            placeholder="Minimum"
-                            type="number" />
-                        <input
-                            class="w3-input w3-bar-item"
-                            id="sub_max"
+                            id="1_max"
                             value="100"
                             placeholder="Maximum"
                             type="number" />
@@ -129,21 +119,11 @@
                 <div>
                     <h2>Multiplication:</h2>
                     <div class="w3-bar">
-                        <input
-                            class="w3-input w3-bar-item"
-                            id="mult_min"
-                            value="0"
-                            placeholder="Minimum"
-                            type="number" />
-                        <input
-                            class="w3-input w3-bar-item"
-                            id="mult_max"
-                            value="10"
-                            placeholder="Maximum"
-                            type="number" />
+                        <input class="w3-input w3-bar-item" id="2_min" value="0" placeholder="Minimum" type="number" />
+                        <input class="w3-input w3-bar-item" id="2_max" value="10" placeholder="Maximum" type="number" />
                         <button
                             onclick="toggleMode(2)"
-                            id="tm_2"
+                            id="2_2"
                             class="w3-show-inline-block w3-blue w3-btn w3-border-blue w3-button w3-ripple w3-border w3-round-xxlarge">
                             Disable
                         </button>
@@ -152,21 +132,37 @@
                 <div>
                     <h2>Division:</h2>
                     <div class="w3-bar">
-                        <input
-                            class="w3-input w3-bar-item"
-                            id="div_min"
-                            value="1"
-                            placeholder="Minimum"
-                            type="number" />
-                        <input
-                            class="w3-input w3-bar-item"
-                            id="div_max"
-                            value="10"
-                            placeholder="Maximum"
-                            type="number" />
+                        <input class="w3-input w3-bar-item" id="3_min" value="1" placeholder="Minimum" type="number" />
+                        <input class="w3-input w3-bar-item" id="3_max" value="10" placeholder="Maximum" type="number" />
                         <button
                             onclick="toggleMode(3)"
-                            id="tm_3"
+                            id="3_3"
+                            class="w3-show-inline-block w3-blue w3-btn w3-border-blue w3-button w3-ripple w3-border w3-round-xxlarge">
+                            Disable
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <h2>Squares:</h2>
+                    <div class="w3-bar">
+                        <input class="w3-input w3-bar-item" id="4_min" value="1" placeholder="Minimum" type="number" />
+                        <input class="w3-input w3-bar-item" id="4_max" value="10" placeholder="Maximum" type="number" />
+                        <button
+                            onclick="toggleMode(4)"
+                            id="tm_4"
+                            class="w3-show-inline-block w3-blue w3-btn w3-border-blue w3-button w3-ripple w3-border w3-round-xxlarge">
+                            Disable
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <h2>Cubes:</h2>
+                    <div class="w3-bar">
+                        <input class="w3-input w3-bar-item" id="5_min" value="1" placeholder="Minimum" type="number" />
+                        <input class="w3-input w3-bar-item" id="5_max" value="7" placeholder="Maximum" type="number" />
+                        <button
+                            onclick="toggleMode(5)"
+                            id="tm_5"
                             class="w3-show-inline-block w3-blue w3-btn w3-border-blue w3-button w3-ripple w3-border w3-round-xxlarge">
                             Disable
                         </button>
@@ -207,8 +203,10 @@
             <h2>Questions:</h2>
             <span id="score"></span>
             <div id="questionsContent"></div>
-            <p class="yes-print" style="font-size: 0.7em;">
-                Made with the IWLTech Math Generator (<a href="https://iwltechnology.github.io/mathgen">https://iwltechnology.github.io/mathgen</a>)
+            <p class="yes-print" style="font-size: 0.7em">
+                Made with the IWLTech Math Generator (<a href="https://iwltechnology.github.io/mathgen"
+                    >https://iwltechnology.github.io/mathgen</a
+                >)
             </p>
         </div>
         <hr />
@@ -216,14 +214,17 @@
         <div id="answers" class="w3-margin">
             <h2>Answers:</h2>
             <div id="answersContent"></div>
-            <p class="yes-print" style="font-size: 0.7em;">
-                Made with the IWLTech Math Generator (<a href="https://iwltechnology.github.io/mathgen">https://iwltechnology.github.io/mathgen</a>)
+            <p class="yes-print" style="font-size: 0.7em">
+                Made with the IWLTech Math Generator (<a href="https://iwltechnology.github.io/mathgen"
+                    >https://iwltechnology.github.io/mathgen</a
+                >)
             </p>
         </div>
         <hr />
         <script>
-            var enabled = [true, true, true, true];
-            var operations = ["+", "-", "×", "÷"];
+            var operations = [" + ", " - ", " × ", " ÷ ", "²", "³"];
+            var enabled = [];
+            for(var i = 0; i < operations.length; i++) enabled.push(true);
             function toggleMode(n) {
                 enabled[n] = !enabled[n];
                 if (enabled[n]) {
@@ -231,7 +232,6 @@
                 } else {
                     document.getElementById("tm_" + n).innerHTML = "Enable";
                 }
-                console.log(enabled);
             }
             function go() {
                 document.documentElement.style.setProperty("--fs", document.getElementById("gen_fs").value + "em");
@@ -242,28 +242,21 @@
                 document.getElementById("answersContent").innerHTML = "";
                 document.getElementById("questionsContent").innerHTML = "";
                 var nofQ = Number(document.getElementById("gen_nofq").value);
-                var dataSet = [
-                    [
-                        Number(document.getElementById("add_min").value),
-                        Number(document.getElementById("add_max").value)
-                    ],
-                    [
-                        Number(document.getElementById("sub_min").value),
-                        Number(document.getElementById("sub_max").value)
-                    ],
-                    [
-                        Number(document.getElementById("mult_min").value),
-                        Number(document.getElementById("mult_max").value)
-                    ],
-                    [Number(document.getElementById("div_min").value), Number(document.getElementById("div_max").value)]
-                ];
+                var dataSet = [];
+                for (var i = 0; i < operations.length; i++) {
+                    dataSet.push([
+                        Number(document.getElementById(`${i}_min`).value),
+                        Number(document.getElementById(`${i}_max`).value)
+                    ]);
+                }
+                console.log(dataSet);
                 for (var i = 0; i < nofQ; i++) {
                     var mod;
                     while (true) {
-                        if (!enabled[0] && !enabled[1] && !enabled[2] && !enabled[3]) {
+                        if (enabled.every((value) => !value)) {
                             break;
                         }
-                        mod = Math.floor(Math.random() * 4);
+                        mod = Math.floor(Math.random() * operations.length);
                         if (enabled[mod]) {
                             break;
                         }
@@ -274,10 +267,10 @@
                     ];
                     var ans;
                     switch (operations[mod]) {
-                        case "+":
+                        case " + ":
                             ans = nums[0] + nums[1];
                             break;
-                        case "-":
+                        case " - ":
                             if (nums[1] > nums[0]) {
                                 var temp = nums[0];
                                 nums[0] = nums[1];
@@ -285,10 +278,10 @@
                             }
                             ans = nums[0] - nums[1];
                             break;
-                        case "×":
+                        case " × ":
                             ans = nums[0] * nums[1];
                             break;
-                        case "÷":
+                        case " ÷ ":
                             nums[0] = nums[1] * nums[0];
                             while (true) {
                                 if (nums[1] != 0) {
@@ -301,11 +294,19 @@
                             }
                             ans = nums[0] / nums[1];
                             break;
+                        case "²":
+                            nums[1] = " ";
+                            ans = nums[0] ** 2;
+                            break;
+                        case "³":
+                            nums[1] = " ";
+                            ans = nums[0] ** 3;
                     }
+                    if(isNaN(ans)) ans = "undefined";
                     document.getElementById("answersContent").innerHTML +=
-                        `<p>${nums[0]} ${operations[mod]} ${nums[1]} = <span class="answer">${ans}</span></p>`;
+                        `<p>${nums[0] + operations[mod] + nums[1]} = <span class="answer">${ans}</span></p>`;
                     document.getElementById("questionsContent").innerHTML +=
-                        `<p>${nums[0]} ${operations[mod]} ${nums[1]} = `;
+                        `<p>${nums[0] + operations[mod] + nums[1]} = `;
                 }
                 document.getElementById("score").innerHTML = `/${nofQ}`;
             }
