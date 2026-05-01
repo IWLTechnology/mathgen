@@ -123,7 +123,7 @@
                         <input class="w3-input w3-bar-item" id="2_max" value="10" placeholder="Maximum" type="number" />
                         <button
                             onclick="toggleMode(2)"
-                            id="2_2"
+                            id="tm_2"
                             class="w3-show-inline-block w3-blue w3-btn w3-border-blue w3-button w3-ripple w3-border w3-round-xxlarge">
                             Disable
                         </button>
@@ -136,7 +136,7 @@
                         <input class="w3-input w3-bar-item" id="3_max" value="10" placeholder="Maximum" type="number" />
                         <button
                             onclick="toggleMode(3)"
-                            id="3_3"
+                            id="tm_3"
                             class="w3-show-inline-block w3-blue w3-btn w3-border-blue w3-button w3-ripple w3-border w3-round-xxlarge">
                             Disable
                         </button>
@@ -249,7 +249,6 @@
                         Number(document.getElementById(`${i}_max`).value)
                     ]);
                 }
-                console.log(dataSet);
                 for (var i = 0; i < nofQ; i++) {
                     var mod;
                     while (true) {
